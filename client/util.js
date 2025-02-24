@@ -1,7 +1,12 @@
 /** @jsx jsx **/
 import { jsx } from '@emotion/core';
 import { useState, useEffect } from 'react';
-import set from 'lodash.set';
+//import set from 'lodash.set';
+const set = (string, obj, value) => {
+  const [current,...rest] = string.split(".");
+  rest.length >= 1 ? set(rest.join("."), obj[current] = obj[current] || {}, value) : obj[current]= value;
+  return obj; 
+};
 
 // When there are errors, we want to see if they're Access Denied.
 // If so, we modify the dataset (which otherwise would be `null`) to have an
